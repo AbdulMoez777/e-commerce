@@ -10,25 +10,26 @@ import Cart from "./pages/Cart";
 
 function App() {
   const [location, setLocation] = useState("");
+  const [openDropdown, setOpenDropdown] = useState(false);
 
   const getLocation = async () => {
     navigator.geolocation.getCurrentPosition(async (pos) => {
       const { latitude, longitude } = pos.coords;
-      
+
       console.log(latitude, longitude);
 
       // Add the email parameter directly to the URL to comply with Nominatim's policy
       const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&email=your-email@example.com`;
-      
+
       try {
         const response = await axios.get(url);
-        
+
         // Get the full address object from the API
         const address = response.data.address;
-        
+
         // SAVE THE ENTIRE OBJECT TO STATE
-        setLocation(address); 
-        
+        setLocation(address);
+        setOpenDropdown(false); // Close the dropdown after fetching the location
       } catch (error) {
         console.log("Error fetching location:", error);
       }
@@ -42,7 +43,7 @@ function App() {
   return (
     <BrowserRouter>
       {/* Pass the location state down to the Navbar */}
-      <Navbar location={location} />
+      <Navbar location={location} getLocation={getLocation} openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/products" element={<Products />}></Route>
