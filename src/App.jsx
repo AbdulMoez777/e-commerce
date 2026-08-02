@@ -16,7 +16,7 @@ function App() {
     navigator.geolocation.getCurrentPosition(async (pos) => {
       const { latitude, longitude } = pos.coords;
 
-      console.log(latitude, longitude);
+      // console.log(latitude, longitude);
 
       // Add the email parameter directly to the URL to comply with Nominatim's policy
       const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&email=your-email@example.com`;
