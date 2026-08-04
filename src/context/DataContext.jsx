@@ -13,8 +13,7 @@ const fetchAllProducts = async () => {
   try {
     const res = await axios.get("https://fakestoreapi.com/products")
     console.log(res)  
-    const productsData = res.data.products
-    setData(productsData)    
+    setData(res.data)    
   } catch (error) {
     console.error("Error fetching data:", error);
   }

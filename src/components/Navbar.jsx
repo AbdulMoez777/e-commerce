@@ -20,7 +20,7 @@ function Navbar({ location, getLocation, openDropdown, setOpenDropdown }) {
         <div className="flex gap-7 items-center">
           <Link to={"/"}>
             <h1 className="font-bold text-3xl">
-              <span className="text-yellow-500 font-serif">MZ</span>Tech
+              <span className="text-yellow-500 font-serif">MZ</span>Store
             </h1>
           </Link>
           <div className="flex gap-1 cursor-pointer text-gray-700 items-center">
