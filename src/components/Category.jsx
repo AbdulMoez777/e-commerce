@@ -1,8 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { getData } from '../context/DataContext'
 
 function Category() {
+  const {data, fetchAllProducts} = getData()
+
+  const getUniqueCategory = (data, property) => {
+    let newVal = data?.map((curElem) => {
+      return curElem[property]
+    })
+    newVal = [...new Set(newVal)]
+    return newVal
+  }
+
+  const categoryOnlyData = getUniqueCategory(data, "category")
+  console.log(categoryOnlyData);
+
+  useEffect(() => {
+    fetchAllProducts()
+  },[])
   return (
-    <div>Category</div>
+    <div className='bg-[#101829]'>
+        <div className='max-w-7xl mx-auto flex gap-4 items-center justify-around py-7 px-4'> 
+          {
+            categoryOnlyData.map((item, index) => {
+              return  <div key={index}>
+                <button className='uppercase bg-gradient-to-r from-yellow-500 to-orange-400 text-white px-3 py-1 rounded-md cursor-pointer'>{item}</button>
+                </div>
+
+            })
+          }
+          </div>    
+    </div>
   )
 }
 

@@ -1,12 +1,13 @@
 import React, { useContext, useEffect } from "react";
-import { Datacontext } from "../context/DataContext";
+import { Datacontext, getData } from "../context/DataContext";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import Category from "./Category";
 
 function Carousel() {
-  const { data, fetchAllProducts } = useContext(Datacontext);
+  const { data, fetchAllProducts } = getData()
 
   useEffect(() => {
     fetchAllProducts();
@@ -38,7 +39,7 @@ function Carousel() {
     );
   };
   var settings = {
-    dots: true,
+    dots: false,
     autoplay: true,
     autoplaySpeed: 2000,
     infinite: true,
@@ -97,6 +98,7 @@ function Carousel() {
           );
         })}
       </Slider>
+      <Category/>
     </div>
   );
 }

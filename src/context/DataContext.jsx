@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { useState } from "react";
 
 export const  Datacontext = createContext(null);
@@ -24,3 +24,5 @@ const fetchAllProducts = async () => {
     </Datacontext.Provider>
   );
 }
+
+export const getData = () => useContext(Datacontext)
